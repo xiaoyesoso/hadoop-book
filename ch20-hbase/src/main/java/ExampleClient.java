@@ -26,14 +26,13 @@ public class ExampleClient {
       htd.addFamily(hcd);
       admin.createTable(htd);
       HTableDescriptor[] tables = admin.listTables();
-			HTableDescriptor[] tables = admin.listTables();
-			HashSet hs = new HashSet();
-			for(HTableDescriptor table:tables){
-			   hs.add(table.getTableName().getName());
-			}
-			if(!hs.contains(tableName.getName())){
-				throw new IOException("Failed create of table");
-			}
+      HashSet hs = new HashSet();
+      for(HTableDescriptor table:tables){
+	hs.add(table.getTableName().getName());
+	}
+      if(!hs.contains(tableName.getName())){
+	throw new IOException("Failed create of table");
+	}
       // Run some operations -- three puts, a get, and a scan -- against the table.
       HTable table = new HTable(config, tableName);
       try {
