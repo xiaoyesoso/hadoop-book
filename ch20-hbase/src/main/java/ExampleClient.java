@@ -47,12 +47,13 @@ public class ExampleClient {
         }
         Get get = new Get(Bytes.toBytes("row1"));
         Result result = table.get(get);
-        System.out.println("Get: " + result);
+        System.out.println("get value is " + Bytes.toString(result.getValue(Bytes.toBytes("data"), Bytes.toBytes("1"))));
         Scan scan = new Scan();
         ResultScanner scanner = table.getScanner(scan);
         try {
+          int i = 0;
           for (Result scannerResult : scanner) {
-            System.out.println("Scan: " + scannerResult);
+            System.out.println("scan value is " + Bytes.toString(scannerResult.getValue(Bytes.toBytes("data"), Bytes.toBytes(String.valueOf(i++)))));
           }
         } finally {
           scanner.close();
